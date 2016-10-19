@@ -56,6 +56,57 @@ if (!is_null($events['events'])) {
                 if($r==5){$replytext=$text;}
                 
             }
+
+            if (strpos($text, '555') !== false) {
+                $r=rand(0,4);
+                if($r==0){$replytext="55555555";}
+                if($r==1){$replytext="คริๆๆๆ";}
+                if($r==2){$replytext="ฮ่าๆๆๆๆๆ";}
+                if($r==3){$replytext="ถถถถถถถถถ";}
+                if($r==4){$replytext="5555";}
+            }
+
+            if (strpos($text, 'ตะเองง') !== false) {
+                $r=rand(0,2);
+                if($r==0){$replytext="ว่างายยยยตะเอง";}
+                if($r==1){$replytext="จ๋าาาา";}
+                if($r==2){$replytext="ค้าบบบบ";}
+            }
+
+            if ((strpos($text, 'ใครวะ') !== false)) {
+                $r=rand(0,2);
+                if($r==0){$replytext="เออนั่นดิ ใครวะ";}
+                if($r==1){$replytext="เออ ใครวะ";}
+                if($r==2){$replytext="ไหนๆๆ ใคร";}
+            }
+
+            if ((strpos($text, 'ทำไมวะ') !== false)) {
+                $r=rand(0,1);
+                if($r==0){$replytext="เออ นั่นสิ";}
+                if($r==1){$replytext="เออ ทำไม";}
+            }
+
+            if ((strpos($text, 'ยังไง') !== false)) {
+                $r=rand(0,1);
+                if($r==0){$replytext="อืมมม";}
+                if($r==1){$replytext="อืมม ยังไงดี";}
+              
+            }
+
+            if ((strpos($text, 'เออดิ') !== false)||(strpos($text, 'เออสิ') !== false)) {
+                $r=rand(0,1);
+                if($r==0){$replytext="ใช่ๆๆ ก็ว่าอยู่";}
+                if($r==1){$replytext="ก็ว่าอยู่";}
+              
+            }
+
+            if ((strpos($text, 'ไปมั้ย') !== false)) {
+                $r=rand(0,1);
+                if($r==0){$replytext="ไปไหน";}
+                if($r==1){$replytext="น่าสนใจ";}
+              
+            }
+
 			$messages = [
 				'type' => 'text',
 				'text' => $replytext
