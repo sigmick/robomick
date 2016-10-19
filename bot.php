@@ -22,6 +22,16 @@ if (!is_null($events['events'])) {
             if (strpos($text, 'มิค') !== false) {
                 $replytext="คร้าบบบ";
             }
+            if ($text=='สาด' || strpos($text, 'สาดด') !== false) {
+                $r=rand(0,5);
+                if($r==0){$replytext="สาดดด";}
+                if($r==1){$replytext="สาดดดดดดดดดดดด";}
+                if($r==2){$replytext="สาดดดเอ้ยย";}
+                if($r==3){$replytext="สาดดดด้วย";}
+                if($r==4){$replytext="แสรดดดดด";}
+                if($r==5){$replytext=$text;}
+                
+            }
 			$messages = [
 				'type' => 'text',
 				'text' => $replytext
