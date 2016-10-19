@@ -19,7 +19,7 @@ if (!is_null($events['events'])) {
 			// Build message to reply back
 
 
-            if (strpos($text, 'มิค') !== false) {
+            if ((strpos($text, 'มิค') !== false) && strlen($text<12)) {
                 $r=rand(0,2);
                 if($r==0){$replytext="คร้าบบบ";}
                 if($r==1){$replytext="ว่าไงครับ";}
@@ -40,7 +40,7 @@ if (!is_null($events['events'])) {
                 if($r==2){$replytext="เรียกใครฟะ";}
             }
 
-            if (strpos(strtolower($text), 'mick') !== false) {
+            if ((strpos(strtolower($text), 'mick') !== false) && strlen($text<12)) {
                 $r=rand(0,2);
                 if($r==0){$replytext="Hello";}
                 if($r==1){$replytext="Hi";}
