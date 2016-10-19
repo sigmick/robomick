@@ -20,7 +20,31 @@ if (!is_null($events['events'])) {
 
 
             if (strpos($text, 'มิค') !== false) {
-                $replytext="คร้าบบบ";
+                $r=rand(0,2);
+                if($r==0){$replytext="คร้าบบบ";}
+                if($r==1){$replytext="ว่าไงครับ";}
+                if($r==2){$replytext="ครัช";}
+            }
+
+            if ((strpos($text, 'มิค') !== false) && (strpos($text, 'ครัช') !== false)) {
+                $r=rand(0,2);
+                if($r==0){$replytext="ครัชชช";}
+                if($r==1){$replytext="ว่าไงครัช";}
+                if($r==2){$replytext="อะไรครัช";}
+            }
+
+            if ((strpos($text, 'มิค') !== false) && (strpos($text, 'ไอ้') !== false)) {
+                $r=rand(0,2);
+                if($r==0){$replytext="ไรฟระ";}
+                if($r==1){$replytext="เออ";}
+                if($r==2){$replytext="เรียกใครฟะ";}
+            }
+
+            if (strpos(strtolower($text), 'mick') !== false) {
+                $r=rand(0,2);
+                if($r==0){$replytext="Hello";}
+                if($r==1){$replytext="Hi";}
+                if($r==2){$replytext="what's up";}
             }
             if ($text=='สาด' || strpos($text, 'สาดด') !== false) {
                 $r=rand(0,5);
