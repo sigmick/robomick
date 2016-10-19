@@ -26,6 +26,13 @@ if (!is_null($events['events'])) {
                 if($r==2){$replytext="ครัช";}
             }
 
+            if ((strpos($text, 'สิกขวัต') !== false) && strlen($text<15)) {
+                $r=rand(0,2);
+                if($r==0){$replytext="คร้าบบบ";}
+                if($r==1){$replytext="ว่าไงครับ";}
+                if($r==2){$replytext="ครัช";}
+            }
+
             if ((strpos($text, 'มิค') !== false) && (strpos($text, 'ครัช') !== false)) {
                 $r=rand(0,2);
                 if($r==0){$replytext="ครัชชช";}
