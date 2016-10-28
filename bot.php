@@ -65,13 +65,15 @@ if (!is_null($events['events'])) {
             }
 
             if (strpos($text, '555') !== false) {
-                $r=rand(0,5);
+                $r=rand(0,6);
                 if($r==0){$replytext="55555555";}
                 if($r==1){$replytext="คริๆๆๆ";}
                 if($r==2){$replytext="ฮ่าๆๆๆๆๆ";}
                 if($r==3){$replytext="ถถถถถถถถถ";}
                 if($r==4){$replytext="5555";}
                 if($r==5){$replytext="ขำอะไรกัน";}
+                if($r==6){$replytext="st:555.1";}
+                if($r==7){$replytext="st:555.2";}
             }
 
             if ((strpos($text, 'ขำไร') !== false)||(strpos($text, 'ขำอะไร') !== false)) {
@@ -131,19 +133,20 @@ if (!is_null($events['events'])) {
               
             }
 
-            if ((strpos($text, 'ว่าไง') !== false)) {
-                $r=rand(0,1);
-                if($r==0){$replytext="xxxx";}
-                if($r==1){$replytext="xxxx";}
-              
-            }
 
-            if ($replytext=='xxxx'){
+            if ($replytext=='st:555.1'){
                 $messages = [
                     'type' => 'sticker',
-                    'packageId' => '4',
-                    'stickerId' => '300'
+                    'packageId' => '1',
+                    'stickerId' => '100'
                 ];
+            }elseif ($replytext=='st:555.2'){
+                $messages = [
+                    'type' => 'sticker',
+                    'packageId' => '1',
+                    'stickerId' => '110'
+                ];
+                
             }else{
                 $messages = [
                     'type' => 'text',
