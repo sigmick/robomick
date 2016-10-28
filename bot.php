@@ -65,12 +65,29 @@ if (!is_null($events['events'])) {
             }
 
             if (strpos($text, '555') !== false) {
-                $r=rand(0,4);
+                $r=rand(0,5);
                 if($r==0){$replytext="55555555";}
                 if($r==1){$replytext="คริๆๆๆ";}
                 if($r==2){$replytext="ฮ่าๆๆๆๆๆ";}
                 if($r==3){$replytext="ถถถถถถถถถ";}
                 if($r==4){$replytext="5555";}
+                if($r==5){$replytext="ขำอะไรกัน";}
+            }
+
+            if ((strpos($text, 'ขำไร') !== false)||(strpos($text, 'ขำอะไร') !== false)) {
+                $r=rand(0,5);
+                if($r==0){$replytext="ไม่รู้ดิ";}
+                if($r==1){$replytext="อยากขำ";}
+                if($r==2){$replytext="แป่วววว";}
+                if($r==3){$replytext="ขำไปเรื่อย";}
+                if($r==4){$replytext="อุ้ยยย";}
+                if($r==5){$replytext="นั่นดิ ขำอะไร";}
+            }
+
+            if ((strpos($text, 'กี่โมงแล้ว') !== false)) {
+                $r=rand(0,5);
+                if($r==0){$replytext="ดูบนจอดิ";}
+                if($r==1){$replytext= date('H:i:s');}
             }
 
             if (strpos($text, 'ตะเองง') !== false) {
