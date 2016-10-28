@@ -65,7 +65,7 @@ if (!is_null($events['events'])) {
             }
 
             if (strpos($text, '555') !== false) {
-                $r=rand(0,6);
+                $r=rand(0,7);
                 if($r==0){$replytext="55555555";}
                 if($r==1){$replytext="คริๆๆๆ";}
                 if($r==2){$replytext="ฮ่าๆๆๆๆๆ";}
@@ -146,7 +146,7 @@ if (!is_null($events['events'])) {
                     'packageId' => '1',
                     'stickerId' => '110'
                 ];
-                
+
             }else{
                 $messages = [
                     'type' => 'text',
