@@ -141,8 +141,8 @@ if (!is_null($events['events'])) {
             if ($replytext=='xxxx'){
                 $messages = [
                     'type' => 'sticker',
-                    'package_id' => '1',
-                    'sticker_id' => '2'
+                    'packageId' => '4',
+                    'stickerId' => '300'
                 ];
             }else{
                 $messages = [
