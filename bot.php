@@ -140,7 +140,7 @@ if (!is_null($events['events'])) {
 
             if ($replytext=='xxxx'){
                 $messages = [
-                    'type' => 'text',
+                    'type' => 'sticker',
                     'package_id' => '1',
                     'sticker_id' => '2'
                 ];
