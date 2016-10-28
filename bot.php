@@ -131,10 +131,25 @@ if (!is_null($events['events'])) {
               
             }
 
-			$messages = [
-				'type' => 'text',
-				'text' => $replytext
-			];
+            if ((strpos($text, 'ว่าไง') !== false)) {
+                $r=rand(0,1);
+                if($r==0){$replytext="xxxx";}
+                if($r==1){$replytext="xxxx";}
+              
+            }
+
+            if ($replytext=='xxxx'){
+                $messages = [
+                    'type' => 'text',
+                    'package_id' => '1',
+                    'sticker_id' => '2'
+                ];
+            }else{
+                $messages = [
+                    'type' => 'text',
+                    'text' => $replytext
+                ];
+            }
 
 			// Make a POST Request to Messaging API to reply to sender
 			$url = 'https://api.line.me/v2/bot/message/reply';
