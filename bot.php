@@ -87,7 +87,7 @@ if (!is_null($events['events'])) {
             if ((strpos($text, 'กี่โมงแล้ว') !== false)) {
                 $r=rand(0,1);
                 if($r==0){$replytext="ดูบนจอดิ";}
-                if($r==1){$replytext= date('H:i:s');}
+                if($r==1){$replytext= date('H:i',time()+25200).' ครับ';}
             }
 
             if (strpos($text, 'ตะเองง') !== false) {
