@@ -144,8 +144,8 @@ if (!is_null($events['events'])) {
             }
 
             if ($text=="content") {
-                //$u=getUser($uid);
-               $replytext=$uid; 
+                $u=getUser($uid);
+               $replytext=$u['displayName']; 
             }
 
             if ($replytext=='st:555.1'){
@@ -223,6 +223,7 @@ function getbahtprice(){
 }
 
 function getUser($userid){
+    global $access_token;
     $url = 'https://api.line.me/v2/bot/profile/'.$userid;
     $headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
 
