@@ -145,7 +145,7 @@ if (!is_null($events['events'])) {
 
             if ($text=="content") {
                 $u=getUser($uid);
-               $replytext=$u['displayName']; 
+               $replytext=$u; 
             }
 
             if ($replytext=='st:555.1'){
