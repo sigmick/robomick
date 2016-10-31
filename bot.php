@@ -269,7 +269,7 @@ function get_tel($searchword) {
     }
     //$str=$json;
     if($str==""){
-        $str="หาแล้วไม่เจอ ".$search." ครับ";
+        $str="หาแล้วไม่เจอ ".$searchword." ครับ";
     }
 	return $str;
 
