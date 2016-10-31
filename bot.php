@@ -263,8 +263,8 @@ function get_tel($searchword) {
     $obj = json_decode($json,TRUE);
 
     $str="";
-    foreach ($obj['documents'] as $doc){
-        $str.=$doc['document']['custnamet']."(".$doc['document'][['citynamet'].") โทร.".$doc['document'][['telno']."\r\n";
+    foreach ($obj['documents']['document'] as $doc){
+        $str.=$doc['custnamet']."(".$doc['citynamet'].") โทร.".$doc['telno']."\r\n";
         //$str.="x";
     }
     //$str=$json;
