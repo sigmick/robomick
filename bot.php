@@ -256,6 +256,9 @@ function get_tel($search) {
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 	curl_setopt($ch,CURLOPT_SSL_VERIFYPEER, false);
 
+$dataxml=preg_replace('/&(?!#?[a-z0-9]+;)/', '&amp;', $dataxml);
+	$dataxml=preg_replace ('/[^\x{0009}\x{000a}\x{000d}\x{0020}-\x{D7FF}\x{E000}-\x{FFFD}]+/u', ' ', $dataxml);
+
 	$dataxml = curl_exec ($ch);
 	curl_close ($ch);
 
