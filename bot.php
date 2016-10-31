@@ -235,7 +235,8 @@ function getUser($userid){
     $result = curl_exec($ch);
     curl_close($ch);
 
-    return json_decode($result, true);
+    //return json_decode($result, true);
+    return $result;
 }
 
 
