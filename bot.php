@@ -193,8 +193,8 @@ function getgoldprice(){
     $server_output = curl_exec ($ch);
     curl_close ($ch);
     $ds = json_decode($server_output,true);
-    $str="รับซื้อ ".number_format($ds[4]['bid'],2)." ขายออก ".number_format($ds[4]['ask'],2)." ";
-    $str.="ราคาเมื่อ ".date("d-m-Y", $ds[0]['bid']/1000)." ".$ds[0]['ask']." ครับผม";
+    $str="รับซื้อ ".number_format($ds[4]['bid'],0)."\r\nขายออก ".number_format($ds[4]['ask'],0)." ";
+    $str.="\r\nราคาเมื่อเวลา ".$ds[0]['ask']." ครับผม";
     return $str;
 }
 
