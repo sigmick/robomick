@@ -133,6 +133,10 @@ if (!is_null($events['events'])) {
               
             }
 
+            if ((strpos($text, 'ราคาทอง') !== false)) {
+               $replytext=getgoldprice();
+              
+            }
 
             if ($replytext=='st:555.1'){
                 $messages = [
@@ -177,5 +181,20 @@ if (!is_null($events['events'])) {
 	}
 }
 echo "OK";
+
+
+function getgoldprice(){
+    
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL,"http://www.thaigold.info/RealTimeDataV2/gtdata_.txt");
+    curl_setopt($ch, CURLOPT_POST, 1);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+    $server_output = curl_exec ($ch);
+    curl_close ($ch);
+    $ds = json_decode($server_output,true);
+    $str=$ds[4]['ask'];
+    return $str;
+}
 
 ?>
