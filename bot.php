@@ -134,9 +134,13 @@ if (!is_null($events['events'])) {
             }
 
             if ((strpos($text, 'ราคาทอง') !== false)||(strpos($text, 'ทองกี่บาท') !== false)) {
-               $replytext=getgoldprice();
-              
+               $replytext=getgoldprice(); 
             }
+
+            if ((strpos($text, 'ค่าเงิน') !== false)||(strpos($text, 'อัตราแลกเปลี่ยน') !== false)) {
+               $replytext=getbahtprice(); 
+            }
+
 
             if ($replytext=='st:555.1'){
                 $messages = [
@@ -197,5 +201,21 @@ function getgoldprice(){
     $str.="\r\nราคาเมื่อเวลา ".$ds[0]['ask']." ครับผม";
     return $str;
 }
+
+function getbahtprice(){
+    
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL,"http://www.thaigold.info/RealTimeDataV2/gtdata_.txt?t=".time());
+    curl_setopt($ch, CURLOPT_POST, 1);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+    $server_output = curl_exec ($ch);
+    curl_close ($ch);
+    $ds = json_decode($server_output,true);
+    $str="ค่าเงิน ".number_format($ds[3]['bid'],4)." บาทต่อ 1 USD จ้า";
+    return $str;
+}
+
+
 
 ?>
