@@ -144,8 +144,8 @@ if (!is_null($events['events'])) {
             }
 
             if ($text=="content") {
-                $u=getUser($uid);
-               $replytext=$u['displayName']; 
+                //$u=getUser($uid);
+               $replytext=$uid; 
             }
 
             if ($replytext=='st:555.1'){
