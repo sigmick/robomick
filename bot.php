@@ -250,7 +250,7 @@ function getUser($userid){
 function get_tel($search) {
     $search=str_replace(" ","+",$search);
 	$ch = curl_init();
-	curl_setopt($ch, CURLOPT_URL, 'http://searchapi.yellowpages.co.th/api.jsp?id=&txtWhat='.$search.'&language=th&hits=3&page=1');
+	curl_setopt($ch, CURLOPT_URL, 'http://searchapi.yellowpages.co.th/api.jsp?id=&txtWhat='.$search.'&language=th&hits=1&page=1');
 	curl_setopt($ch, CURLOPT_POST, 1);
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 	curl_setopt($ch,CURLOPT_SSL_VERIFYPEER, false);
@@ -265,7 +265,7 @@ function get_tel($search) {
     foreach ($obj['documents']['document'] as $doc){
         $str.=$doc['custnamet']."(".$doc['citynamet'].") โทร.".$doc['telno']."\r\n";
     }
-    $str=$json;
+    //$str=$json;
     if($str==""){
         $str="หาแล้วไม่เจอ ".$search." ครับ";
     }
