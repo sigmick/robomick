@@ -17,6 +17,8 @@ if (!is_null($events['events'])) {
 			$replyToken = $event['replyToken'];
 
             $uid=$event['source']['userId'];
+            $user=getUser($uid);
+            $displayname=$user['displayName'];
 
 			// Build message to reply back
 
@@ -24,7 +26,7 @@ if (!is_null($events['events'])) {
             if ((strpos($text, 'มิค') !== false) && strlen($text<12)) {
                 $r=rand(0,2);
                 if($r==0){$replytext="คร้าบบบ";}
-                if($r==1){$replytext="ว่าไงครับ";}
+                if($r==1){$replytext="ว่าไงครับ ".$displayname;}
                 if($r==2){$replytext="ครัช";}
             }
 
@@ -39,7 +41,7 @@ if (!is_null($events['events'])) {
                 $r=rand(0,2);
                 if($r==0){$replytext="ครัชชช";}
                 if($r==1){$replytext="ว่าไงครัช";}
-                if($r==2){$replytext="อะไรครัช";}
+                if($r==2){$replytext="อะไรครัช ".$displayname;}
             }
 
             if ((strpos($text, 'มิค') !== false) && (strpos($text, 'ไอ้') !== false)) {
@@ -52,7 +54,7 @@ if (!is_null($events['events'])) {
             if ((strpos(strtolower($text), 'mick') !== false) && strlen($text<12)) {
                 $r=rand(0,2);
                 if($r==0){$replytext="Hello";}
-                if($r==1){$replytext="Hi";}
+                if($r==1){$replytext="Hi ".$displayname;}
                 if($r==2){$replytext="what's up";}
             }
             if ($text=='สาด' || strpos($text, 'สาดด') !== false) {
@@ -144,7 +146,7 @@ if (!is_null($events['events'])) {
             }
 
             if ($text=="content") {
-                $u=getUser($uid);
+            
                $replytext=$u; 
             }
 
@@ -235,8 +237,8 @@ function getUser($userid){
     $result = curl_exec($ch);
     curl_close($ch);
 
-    //return json_decode($result, true);
-    return $result;
+    return json_decode($result, true);
+    
 }
 
 
