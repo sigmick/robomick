@@ -251,7 +251,7 @@ function get_tel($searchword) {
     //$search=str_replace(" ","+",$search);
     $search=urlencode($searchword);
 	$ch = curl_init();
-	curl_setopt($ch, CURLOPT_URL, 'http://searchapi.yellowpages.co.th/api.jsp?id=&txtWhat='.$search.'&language=th&hits=1&page=1');
+	curl_setopt($ch, CURLOPT_URL, 'http://searchapi.yellowpages.co.th/api.jsp?id=&txtWhat='.$search.'&language=th&hits=10&page=1');
 	curl_setopt($ch, CURLOPT_POST, 1);
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 	curl_setopt($ch,CURLOPT_SSL_VERIFYPEER, false);
@@ -264,7 +264,7 @@ function get_tel($searchword) {
 
     $str="";
     foreach ($obj['documents'] as $doc){
-        $str.=$doc['custnamet']."(".$doc['citynamet'].") โทร.".$doc['telno']."\r\n";
+        $str.=$doc['document']['custnamet']."(".$doc['document'][['citynamet'].") โทร.".$doc['document'][['telno']."\r\n";
         //$str.="x";
     }
     //$str=$json;
