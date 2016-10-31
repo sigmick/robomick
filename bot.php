@@ -141,6 +141,9 @@ if (!is_null($events['events'])) {
                $replytext=getbahtprice(); 
             }
 
+            if ($text=="content") {
+               $replytext=$content; 
+            }
 
             if ($replytext=='st:555.1'){
                 $messages = [
