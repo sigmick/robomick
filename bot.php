@@ -248,20 +248,14 @@ function getUser($userid){
 }
 
 function get_tel($search) {
-    //$search=str_replace(" ","+",$search);
-    $search=urlencode($search);
+    $search=str_replace(" ","+",$search);
 	$ch = curl_init();
-	curl_setopt($ch, CURLOPT_URL, 'http://searchapi.yellowpages.co.th/api.jsp?txtWhat='.$search.'&language=th&hits=10&page=1');
+	curl_setopt($ch, CURLOPT_URL, 'http://searchapi.yellowpages.co.th/api.jsp?id=&txtWhat='.$search.'&language=th&hits=1&page=1');
 	curl_setopt($ch, CURLOPT_POST, 1);
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 	curl_setopt($ch,CURLOPT_SSL_VERIFYPEER, false);
 
-
 	$dataxml = curl_exec ($ch);
-    $dataxml=preg_replace('/&(?!#?[a-z0-9]+;)/', '&amp;', $dataxml);
-	$dataxml=preg_replace ('/[^\x{0009}\x{000a}\x{000d}\x{0020}-\x{D7FF}\x{E000}-\x{FFFD}]+/u', ' ', $dataxml);
-
-
 	curl_close ($ch);
 
     $json = json_encode(simplexml_load_string($dataxml));
