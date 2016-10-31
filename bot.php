@@ -265,7 +265,7 @@ function get_tel($search) {
         $str.=$doc['custnamet']."(".$doc['citynamet'].") โทร.".$doc['telno']."\r\n";
     }
     if($str==""){
-        $str="หาแล้วไม่เจอครับ";
+        $str="หาแล้วไม่เจอ ".$search." ครับ";
     }
 	return $str;
 
