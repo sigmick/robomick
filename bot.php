@@ -262,9 +262,9 @@ function get_tel($search) {
     $obj = json_decode($json,TRUE);
 
     $str="";
-    foreach ($obj['documents']['document'] as $doc){
-       // $str.=$doc['custnamet']."(".$doc['citynamet'].") โทร.".$doc['telno']."\r\n";
-        $str.="x";
+    foreach ($obj['documents'] as $doc){
+        $str.=$doc['custnamet']."(".$doc['citynamet'].") โทร.".$doc['telno']."\r\n";
+        //$str.="x";
     }
     //$str=$json;
     if($str==""){
