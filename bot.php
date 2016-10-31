@@ -16,6 +16,8 @@ if (!is_null($events['events'])) {
 			// Get replyToken
 			$replyToken = $event['replyToken'];
 
+            $uid=$event['source']['userId'];
+
 			// Build message to reply back
 
 
@@ -142,7 +144,8 @@ if (!is_null($events['events'])) {
             }
 
             if ($text=="content") {
-               $replytext=$content; 
+                $u=getUser($uid);
+               $replytext=$u['displayName']; 
             }
 
             if ($replytext=='st:555.1'){
@@ -219,6 +222,20 @@ function getbahtprice(){
     return $str;
 }
 
+function getUser($userid){
+    $url = 'https://api.line.me/v2/bot/profile/'.$userid;
+    $headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
+
+    $ch = curl_init($url);
+    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+    $result = curl_exec($ch);
+    curl_close($ch);
+
+    return json_decode($result, true);
+}
 
 
 ?>
