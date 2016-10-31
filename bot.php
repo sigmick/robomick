@@ -147,10 +147,10 @@ if (!is_null($events['events'])) {
 
             if ((strpos($text, 'หาเบอร์') !== false)||(strpos($text, 'เบอร์โทร') !== false)||(strpos($text, 'ขอเบอร์') !== false)){
                 $search=str_replace("ขอเบอร์โทร","",$text);
-                $search=str_replace("เบอร์โทร","",$text);
-                $search=str_replace("หาเบอร์โทรศัพท์","",$text);
-                $search=str_replace("หาเบอร์","",$text);
-                $search=str_replace("ขอเบอร์","",$text);
+                $search=str_replace("เบอร์โทร","",$search);
+                $search=str_replace("หาเบอร์โทรศัพท์","",$search);
+                $search=str_replace("หาเบอร์","",$search);
+                $search=str_replace("ขอเบอร์","",$search);
                 
                 $replytext=get_tel($search);
             }
