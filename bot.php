@@ -133,7 +133,7 @@ if (!is_null($events['events'])) {
               
             }
 
-            if ((strpos($text, 'ราคาทอง') !== false)) {
+            if ((strpos($text, 'ราคาทอง') !== false)||(strpos($text, 'ทองกี่บาท') !== false)) {
                $replytext=getgoldprice();
               
             }
@@ -186,7 +186,7 @@ echo "OK";
 function getgoldprice(){
     
     $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL,"http://www.thaigold.info/RealTimeDataV2/gtdata_.txt");
+    curl_setopt($ch, CURLOPT_URL,"http://www.thaigold.info/RealTimeDataV2/gtdata_.txt?t=".time());
     curl_setopt($ch, CURLOPT_POST, 1);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
