@@ -264,7 +264,7 @@ function get_tel($searchword) {
 
     $str="";
     foreach ($obj['documents']['document'] as $doc){
-        $str.=$doc['custnamet']."(".$doc['citynamet'].") โทร.".$doc['telno']."\r\n";
+        $str.=$doc['custnamet']."(".$doc['citynamet'].") โทร. ".$doc['telno']."\r\n\r\n";
         //$str.="x";
     }
     //$str=$json;
