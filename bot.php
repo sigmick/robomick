@@ -247,9 +247,9 @@ function getUser($userid){
     
 }
 
-function get_tel($search) {
+function get_tel($searchword) {
     //$search=str_replace(" ","+",$search);
-    $search=urlencode($search);
+    $search=urlencode($searchword);
 	$ch = curl_init();
 	curl_setopt($ch, CURLOPT_URL, 'http://searchapi.yellowpages.co.th/api.jsp?id=&txtWhat='.$search.'&language=th&hits=5&page=1');
 	curl_setopt($ch, CURLOPT_POST, 1);
