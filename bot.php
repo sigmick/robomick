@@ -145,10 +145,16 @@ if (!is_null($events['events'])) {
                $replytext=getbahtprice(); 
             }
 
-            if ($text=="content") {
-            
-               $replytext=$u; 
+            if ((strpos($text, 'หาเบอร์') !== false)||(strpos($text, 'เบอร์โทร') !== false)||(strpos($text, 'ขอเบอร์') !== false)){
+                $search=str_replace("ขอเบอร์โทร","",$text);
+                $search=str_replace("เบอร์โทร","",$text);
+                $search=str_replace("หาเบอร์โทรศัพท์","",$text);
+                $search=str_replace("หาเบอร์","",$text);
+                $search=str_replace("ขอเบอร์","",$text);
+                
+                $replytext=get_tel($search);
             }
+  
 
             if ($replytext=='st:555.1'){
                 $messages = [
@@ -241,5 +247,28 @@ function getUser($userid){
     
 }
 
+function get_tel($search) {
+	$ch = curl_init();
+	curl_setopt($ch, CURLOPT_URL, 'http://searchapi.yellowpages.co.th/api.jsp?id=&txtWhat='.$search.'&language=th&hits=10&page=1');
+	curl_setopt($ch, CURLOPT_POST, 1);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	curl_setopt($ch,CURLOPT_SSL_VERIFYPEER, false);
+
+	$dataxml = curl_exec ($ch);
+	curl_close ($ch);
+
+    $json = json_encode(simplexml_load_string($dataxml));
+    $obj = json_decode($json,TRUE);
+
+    $str="";
+    foreach ($obj['documents']['document'] as $doc){
+        $str.=$doc['custnamet']."(".$doc['citynamet'].") โทร.".$doc['telno']."\r\n";
+    }
+    if($str==""){
+        $str="หาแล้วไม่เจอครับ";
+    }
+	return $str;
+
+}
 
 ?>
