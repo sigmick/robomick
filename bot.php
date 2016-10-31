@@ -228,7 +228,7 @@ function getUser($userid){
     $headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
 
     $ch = curl_init($url);
-    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET");
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
     curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
