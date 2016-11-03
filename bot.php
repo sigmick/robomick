@@ -154,6 +154,17 @@ if (!is_null($events['events'])) {
                 
                 $replytext=get_tel($search);
             }
+
+            if ((strpos($text, 'งานอีเว้นท์') !== false)||(strpos($text, 'อีเว้นท์') !== false)||(strpos($text, 'รายละเอียดงาน') !== false)){
+                $search=str_replace("งานอีเว้นท์","",$text);
+                $search=str_replace("อีเว้นท์","",$search);
+                $search=str_replace("ขอรายละเอียดงาน","",$search);
+                $search=str_replace("อยากทราบรายละเอียดงาน","",$search);
+                $search=str_replace("รายละเอียดงาน","",$search);
+                
+                
+                $replytext=get_event($search);
+            }
   
 
             if ($replytext=='st:555.1'){
@@ -270,6 +281,35 @@ function get_tel($searchword) {
     //$str=$json;
     if($str==""){
         $str="หาแล้วไม่เจอ ".$searchword." ครับ";
+    }
+	return $str;
+
+}
+
+function get_event($searchword) {
+    //$search=str_replace(" ","+",$search);
+    $search=urlencode($searchword);
+	$ch = curl_init();
+	curl_setopt($ch, CURLOPT_URL, 'http://www.allthaievent.com/ws_admin.php?mode=eventlist&kw='.$search);
+	curl_setopt($ch, CURLOPT_POST, 1);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    
+    $server_output = curl_exec ($ch);
+    curl_close ($ch);
+    $ds = json_decode($server_output,true);
+
+    $str="";
+    $i=0;
+    foreach ($ds  as $event){
+        if($i<5){
+            $str.=$event['eventName']." ".$event['eventTime']." ".$event['venueName']."\r\n\r\n";
+        }
+        $i++;
+        
+    }
+    //$str=$json;
+    if($str==""){
+        $str="ไม่เจอครับ";
     }
 	return $str;
 
