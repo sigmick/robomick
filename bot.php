@@ -288,6 +288,7 @@ function get_tel($searchword) {
 
 function get_event($searchword) {
     //$search=str_replace(" ","+",$search);
+    $search=trim($search);
     $search=urlencode($searchword);
 	$ch = curl_init();
 	curl_setopt($ch, CURLOPT_URL, 'http://www.allthaievent.com/ws_admin.php?mode=eventlist&kw='.$search);
