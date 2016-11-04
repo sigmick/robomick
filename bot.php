@@ -334,7 +334,9 @@ function getoilprice() {
 
     $str="";
     foreach ($ds['DataAccess'] as $prod){
-        $str.=$prod['PRODUCT']." ".$prod['PRICE']."\r\n";
+        if($prod['PRICE']!=''){
+            $str.=$prod['PRODUCT']." ".$prod['PRICE']."\r\n";
+        }
     }
 	return $str;
 
