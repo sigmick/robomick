@@ -142,7 +142,8 @@ if (!is_null($events['events'])) {
             }
 
             if ((strpos($text, 'ราคาน้ำมัน') !== false)||(strpos($text, 'น้ำมันกี่บาท') !== false)||(strpos($text, 'น้ำมันเท่าไร') !== false)||(strpos($text, 'น้ำมันเท่าไหร่') !== false)) {
-               $replytext=getoilprice(); 
+               //$replytext=getoilprice();
+               $replytext="ไม่ทราบครับ"; 
             }
 
             if ((strpos($text, 'ค่าเงิน') !== false)||(strpos($text, 'อัตราแลกเปลี่ยน') !== false)) {
