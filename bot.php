@@ -325,7 +325,7 @@ function getoilprice() {
     $wsdl='http://www.pttplc.com/webservice/pttinfo.asmx?wsdl';
     $client = new SoapClient($wsdl);
     $methodName = 'CurrentOilPrice';
-    $params = array('Language'=>'EN');
+    $params = array('Language'=>'TH');
     $soapAction = 'http://www.pttplc.com/ptt_webservice/CurrentOilPrice';
     $objectResult = $client->__soapCall($methodName, array('parameters' => $params), array('soapaction' => $soapAction));
     $json =  json_encode(simplexml_load_string($objectResult->CurrentOilPriceResult));
@@ -333,7 +333,7 @@ function getoilprice() {
 
     $str="";
     foreach ($obj['DataAccess'] as $prod){
-        $str.=$prod['PRODUCT']." ".$prod['PRICE']."\r\n\r\n";
+        $str.=$prod['PRODUCT']." ".$prod['PRICE']."\r\n";
     }
 	return $str;
 
