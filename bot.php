@@ -141,6 +141,10 @@ if (!is_null($events['events'])) {
                $replytext=getgoldprice(); 
             }
 
+            if ((strpos($text, 'ราคาน้ำมัน') !== false)||(strpos($text, 'น้ำมันกี่บาท') !== false)||(strpos($text, 'น้ำมันเท่าไร') !== false)||(strpos($text, 'น้ำมันเท่าไหร่') !== false)) {
+               $replytext=getoilprice(); 
+            }
+
             if ((strpos($text, 'ค่าเงิน') !== false)||(strpos($text, 'อัตราแลกเปลี่ยน') !== false)) {
                $replytext=getbahtprice(); 
             }
@@ -311,6 +315,25 @@ function get_event($searchword) {
     //$str=$json;
     if($str==""){
         $str="ไม่เจอครับ";
+    }
+	return $str;
+
+}
+
+
+function getoilprice() {
+    $wsdl='http://www.pttplc.com/webservice/pttinfo.asmx?wsdl';
+    $client = new SoapClient($wsdl);
+    $methodName = 'CurrentOilPrice';
+    $params = array('Language'=>'EN');
+    $soapAction = 'http://www.pttplc.com/ptt_webservice/CurrentOilPrice';
+    $objectResult = $client->__soapCall($methodName, array('parameters' => $params), array('soapaction' => $soapAction));
+    $json =  json_encode(simplexml_load_string($objectResult->CurrentOilPriceResult));
+    $obj = json_decode($json,TRUE);
+
+    $str="";
+    foreach ($obj['DataAccess'] as $prod){
+        $str.=$prod['PRODUCT']." ".$prod['PRICE']."\r\n\r\n";
     }
 	return $str;
 
