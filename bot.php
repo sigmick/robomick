@@ -142,8 +142,7 @@ if (!is_null($events['events'])) {
             }
 
             if ((strpos($text, 'ราคาน้ำมัน') !== false)||(strpos($text, 'น้ำมันกี่บาท') !== false)||(strpos($text, 'น้ำมันเท่าไร') !== false)||(strpos($text, 'น้ำมันเท่าไหร่') !== false)) {
-               //$replytext=getoilprice();
-               $replytext="ไม่ทราบครับ"; 
+               $replytext=getoilprice(); 
             }
 
             if ((strpos($text, 'ค่าเงิน') !== false)||(strpos($text, 'อัตราแลกเปลี่ยน') !== false)) {
@@ -323,17 +322,18 @@ function get_event($searchword) {
 
 
 function getoilprice() {
-    $wsdl='http://www.pttplc.com/webservice/pttinfo.asmx?wsdl';
-    $client = new SoapClient($wsdl);
-    $methodName = 'CurrentOilPrice';
-    $params = array('Language'=>'TH');
-    $soapAction = 'http://www.pttplc.com/ptt_webservice/CurrentOilPrice';
-    $objectResult = $client->__soapCall($methodName, array('parameters' => $params), array('soapaction' => $soapAction));
-    $json =  json_encode(simplexml_load_string($objectResult->CurrentOilPriceResult));
-    $obj = json_decode($json,TRUE);
+    $ch = curl_init();
+	curl_setopt($ch, CURLOPT_URL, 'http://www.allthaievent.com/ws_oilprice.php');
+	curl_setopt($ch, CURLOPT_POST, 1);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    
+    $server_output = curl_exec ($ch);
+    curl_close ($ch);
+    $ds = json_decode($server_output,true);
+
 
     $str="";
-    foreach ($obj['DataAccess'] as $prod){
+    foreach ($ds['DataAccess'] as $prod){
         $str.=$prod['PRODUCT']." ".$prod['PRICE']."\r\n";
     }
 	return $str;
