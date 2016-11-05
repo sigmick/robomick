@@ -169,7 +169,12 @@ if (!is_null($events['events'])) {
                 
                 $replytext=get_event($search);
             }
-  
+            if ((strpos($text, '$') !== false){
+                $usdbaht=get_exchangeusd_baht($text);
+                if($usdbaht!=""){
+                   $replytext= $usdbaht;
+                }
+            }
 
             if ($replytext=='st:555.1'){
                 $messages = [
@@ -222,7 +227,6 @@ function getgoldprice(){
     curl_setopt($ch, CURLOPT_URL,"http://www.thaigold.info/RealTimeDataV2/gtdata_.txt?t=".time());
     curl_setopt($ch, CURLOPT_POST, 1);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
     $server_output = curl_exec ($ch);
     curl_close ($ch);
     $ds = json_decode($server_output,true);
@@ -237,7 +241,6 @@ function getbahtprice(){
     curl_setopt($ch, CURLOPT_URL,"http://www.thaigold.info/RealTimeDataV2/gtdata_.txt?t=".time());
     curl_setopt($ch, CURLOPT_POST, 1);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
     $server_output = curl_exec ($ch);
     curl_close ($ch);
     $ds = json_decode($server_output,true);
@@ -342,4 +345,32 @@ function getoilprice() {
 
 }
 
+function get_exchangeusd_baht($str){
+    
+    preg_match('/\$([0-9]+[\.]*[0-9]*)/', $str, $match);
+    $dollar_amount="";
+    if(count($match)>0){
+        $dollar_amount = $match[1];
+    }else{
+        preg_match('/([0-9]+[\.]*[0-9]*)\$/', $str, $match);
+        if(count($match)>0){
+            $dollar_amount = $match[1];
+        }	
+    }
+
+    if($dollar_amount!=""){
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL,"http://www.thaigold.info/RealTimeDataV2/gtdata_.txt?t=".time());
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $server_output = curl_exec ($ch);
+        curl_close ($ch);
+        $ds = json_decode($server_output,true);
+
+        return number_format(($dollar_amount*$ds[3]['bid']),2) ." บาท";
+    }else{
+        return "";
+    }
+
+}
 ?>
