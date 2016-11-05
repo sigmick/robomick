@@ -169,7 +169,7 @@ if (!is_null($events['events'])) {
                 
                 $replytext=get_event($search);
             }
-            if ((strpos($text, '$') !== false){
+            if ((strpos($text, '$') !== false)){
                 $usdbaht=get_exchangeusd_baht($text);
                 if($usdbaht!=""){
                    $replytext= $usdbaht;
