@@ -213,7 +213,7 @@ if (!is_null($events['events'])) {
 
             if ((strpos($text, 'ไสหัวไป robomick') !== false)) {
 
-               $url = 'https://api.line.me/v2/bot/group/'. urlencode($groupId).'/leave';
+               $url = 'https://api.line.me/v2/bot/group/'.$groupId.'/leave';
                 $headers = array('Authorization: Bearer ' . $access_token);
 
                 $ch = curl_init($url);
