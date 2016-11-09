@@ -225,7 +225,11 @@ if (!is_null($events['events'])) {
                 curl_close($ch);
 
                 //return json_decode($result, true);
-                $messages=$url;
+                $replytext=$url;
+                $messages = [
+                    'type' => 'text',
+                    'text' => $replytext
+                ];
                 
             }
 
