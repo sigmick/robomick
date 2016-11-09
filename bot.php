@@ -17,6 +17,7 @@ if (!is_null($events['events'])) {
 			$replyToken = $event['replyToken'];
 
             $uid=$event['source']['userId'];
+            $groupid=$event['source']['groupid'];
             $user=getUser($uid);
             $displayname=$user['displayName'];
 
@@ -149,6 +150,12 @@ if (!is_null($events['events'])) {
                $replytext=getbahtprice(); 
             }
 
+            if ((strpos($text, 'show id') !== false)) {
+               $replytext="userid :".$uid ." | "."groupid :".$groupid ; 
+            }
+
+            
+
             if ((strpos($text, 'หาเบอร์') !== false)||(strpos($text, 'เบอร์โทร') !== false)||(strpos($text, 'ขอเบอร์') !== false)){
                 $search=str_replace("ขอเบอร์โทร","",$text);
                 $search=str_replace("เบอร์โทร","",$search);
@@ -263,6 +270,21 @@ function getUser($userid){
 
     return json_decode($result, true);
     
+}
+function leaveGroup($groupId){
+    global $access_token;
+    $url = 'https://api.line.me/v1/bot/group/leave/'.$groupId;
+    $headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
+
+    $ch = curl_init($url);
+    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "DELETE");
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+    $result = curl_exec($ch);
+    curl_close($ch);
+
+    return true;
 }
 
 function get_tel($searchword) {
