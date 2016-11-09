@@ -233,7 +233,7 @@ if (!is_null($events['events'])) {
 
                 $response = curl_exec($curl);
                 $err = curl_error($curl);
-$httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+$httpCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
                 curl_close($curl);
                 $messages = [
                     'type' => 'text',
