@@ -281,7 +281,7 @@ function getUser($userid){
 }
 function leaveGroup($groupId){
     global $access_token;
-    $url = 'https://api.line.me/v2/bot/group/'.$groupId.'/leave';
+    $url = 'https://api.line.me/v2/bot/group/'. urlencode($groupId).'/leave';
     $headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
 
     $ch = curl_init($url);
@@ -297,7 +297,7 @@ function leaveGroup($groupId){
 
 function leaveRoom($roomId){
     global $access_token;
-    $url = 'https://api.line.me/v2/bot/room/'.$roomId.'/leave';
+    $url = 'https://api.line.me/v2/bot/room/'. urlencode($roomId).'/leave';
     $headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
 
     $ch = curl_init($url);
