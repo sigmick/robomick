@@ -227,7 +227,7 @@ curl_setopt_array($curl, array(
     "authorization: Bearer w/CaCXolKorjagsQzBTgKYovOd4fiJrS9ez0Qh8rY0S8YVjIOnJBT1P1JmVXI5Bh+XAdN2sk521x7GaYlnAQi3+QUCaDmgzx+rlX5wRubhF1BtwOiiOsB4NyfwJ/FMyKsHoy6sB4E5wa059pme9rKwdB04t89/1O/w1cDnyilFU=",
     "cache-control: no-cache",
     "content-type: application/json",
-    "postman-token: c4d99ec5-bbd8-6edf-dce7-4076e3c36f19"
+    "postman-token: 95c16618-b05d-1dae-661e-10d381553dd0"
   ),
 ));
 
