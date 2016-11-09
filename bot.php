@@ -213,6 +213,7 @@ if (!is_null($events['events'])) {
 
             if ((strpos($text, 'ไสหัวไป robomick') !== false)) {
 
+
                $curl = curl_init();
 
                 curl_setopt_array($curl, array(
@@ -239,6 +240,7 @@ if (!is_null($events['events'])) {
                 $messages = [
                     'type' => 'text',
                     'text' => $httpCode 
+
                 ];
                 
             }else{
