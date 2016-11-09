@@ -230,6 +230,13 @@ if (!is_null($events['events'])) {
 			curl_close($ch);
 
 			echo $result . "\r\n";
+
+            if ((strpos($text, 'ไสหัวไป robomick') !== false)) {
+
+               $replytext.=leaveGroup($groupid);
+               $replytext.=leaveRoom($roomid);
+
+            }
 		}
 	}
 }
@@ -293,6 +300,7 @@ function leaveGroup($groupId){
     curl_close($ch);
 
     return json_decode($result, true);
+
 }
 
 function leaveRoom($roomId){
