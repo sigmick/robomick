@@ -17,7 +17,7 @@ if (!is_null($events['events'])) {
 			$replyToken = $event['replyToken'];
 
             $uid=$event['source']['userId'];
-            $groupid=$event['source']['groupid'];
+            $groupid=$event['source']['groupId'];
             $user=getUser($uid);
             $displayname=$user['displayName'];
 
