@@ -233,8 +233,18 @@ if (!is_null($events['events'])) {
 
             if ((strpos($text, 'ไสหัวไป robomick') !== false)) {
 
-               $replytext.=leaveGroup($groupid);
-               $replytext.=leaveRoom($roomid);
+               $url = 'https://api.line.me/v2/bot/group/'. urlencode($groupId).'/leave';
+                $headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
+
+                $ch = curl_init($url);
+                curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+                curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+                $result = curl_exec($ch);
+                curl_close($ch);
+
+                //return json_decode($result, true);
 
             }
 		}
