@@ -155,6 +155,13 @@ if (!is_null($events['events'])) {
                $replytext="userid :".$uid ." | "."groupid :".$groupid ." | "."roomid :".$roomid ; 
             }
 
+            if ((strpos($text, 'ไสหัวไป robomick') !== false)) {
+               $replytext="ไปก็ได้ ไม่ต้องไล่" ;
+               if(leaveGroup($groupid)){$replytext.=" bye";}
+               if(leaveRoom($roomid)){$replytext.=" bye";}
+
+            }
+
             
 
             if ((strpos($text, 'หาเบอร์') !== false)||(strpos($text, 'เบอร์โทร') !== false)||(strpos($text, 'ขอเบอร์') !== false)){
@@ -275,6 +282,22 @@ function getUser($userid){
 function leaveGroup($groupId){
     global $access_token;
     $url = 'https://api.line.me/v1/bot/group/leave/'.$groupId;
+    $headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
+
+    $ch = curl_init($url);
+    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "DELETE");
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+    $result = curl_exec($ch);
+    curl_close($ch);
+
+    return true;
+}
+
+function leaveRoom($roomId){
+    global $access_token;
+    $url = 'https://api.line.me/v1/bot/room/leave/'.$roomId;
     $headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
 
     $ch = curl_init($url);
