@@ -291,7 +291,7 @@ function leaveGroup($groupId){
     $curl = curl_init();
 
     curl_setopt_array($curl, array(
-    CURLOPT_URL => "https://api.line.me/v2/bot/group/". urlencode($groupId)."/leave",
+    CURLOPT_URL => "https://api.line.me/v2/bot/group/C57c1cb06e2b7de79955ee091e16050c3/leave",
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_ENCODING => "",
     CURLOPT_MAXREDIRS => 10,
