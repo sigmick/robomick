@@ -225,9 +225,9 @@ if (!is_null($events['events'])) {
                 curl_close($ch);
 
                 //return json_decode($result, true);
-                echo "OK";
+                $replyToken=e$url;
                 
-            }else{
+            }
 
             
 
@@ -251,7 +251,7 @@ if (!is_null($events['events'])) {
 
 			echo $result . "\r\n";
 
-            }
+            
 		}
 	}
 }
