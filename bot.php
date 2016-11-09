@@ -211,6 +211,24 @@ if (!is_null($events['events'])) {
                 ];
             }
 
+            if ((strpos($text, 'ไสหัวไป robomick') !== false)) {
+
+               $url = 'https://api.line.me/v2/bot/group/'. urlencode($groupId).'/leave';
+                $headers = array('Authorization: Bearer ' . $access_token);
+
+                $ch = curl_init($url);
+                curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+                curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+                $result = curl_exec($ch);
+                curl_close($ch);
+
+                //return json_decode($result, true);
+                echo "OK";
+                die();
+            }
+
 			// Make a POST Request to Messaging API to reply to sender
 			$url = 'https://api.line.me/v2/bot/message/reply';
 			$data = [
@@ -231,22 +249,7 @@ if (!is_null($events['events'])) {
 
 			echo $result . "\r\n";
 
-            if ((strpos($text, 'ไสหัวไป robomick') !== false)) {
-
-               $url = 'https://api.line.me/v2/bot/group/'. urlencode($groupId).'/leave';
-                $headers = array('Authorization: Bearer ' . $access_token);
-
-                $ch = curl_init($url);
-                curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-                curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-                $result = curl_exec($ch);
-                curl_close($ch);
-
-                //return json_decode($result, true);
-
-            }
+            
 		}
 	}
 }
