@@ -225,7 +225,7 @@ if (!is_null($events['events'])) {
                 curl_close($ch);
 
                 //return json_decode($result, true);
-                $replyToken=$url;
+                $messages=$url;
                 
             }
 
