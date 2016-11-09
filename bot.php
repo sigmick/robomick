@@ -292,7 +292,7 @@ function leaveGroup($groupId){
     $result = curl_exec($ch);
     curl_close($ch);
 
-    return true;
+    return json_decode($result, true);
 }
 
 function leaveRoom($roomId){
@@ -308,7 +308,7 @@ function leaveRoom($roomId){
     $result = curl_exec($ch);
     curl_close($ch);
 
-    return true;
+    return json_decode($result, true);
 }
 
 function get_tel($searchword) {
