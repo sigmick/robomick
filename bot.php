@@ -157,8 +157,8 @@ if (!is_null($events['events'])) {
 
             if ((strpos($text, 'ไสหัวไป robomick') !== false)) {
                $replytext="ไปก็ได้ ไม่ต้องไล่" ;
-               $a=leaveGroup($groupid);
-               
+               $replytext.=leaveGroup($groupid);
+               $replytext.=leaveRoom($roomid);
 
             }
 
@@ -211,8 +211,9 @@ if (!is_null($events['events'])) {
                 ];
             }
 
+            if ((strpos($text, 'ไสหัวไป robomick') !== false)) {
 
-            $curl = curl_init();
+               $curl = curl_init();
 
 curl_setopt_array($curl, array(
   CURLOPT_URL => "https://api.line.me/v2/bot/group/C57c1cb06e2b7de79955ee091e16050c3/leave",
@@ -232,7 +233,16 @@ curl_setopt_array($curl, array(
 
 $response = curl_exec($curl);
 $err = curl_error($curl);
-    curl_close($curl);
+
+curl_close($curl);
+                $messages = [
+                    'type' => 'text',
+                    'text' => $httpcode 
+                ];
+                
+            }
+
+            
 
 			// Make a POST Request to Messaging API to reply to sender
 			$url = 'https://api.line.me/v2/bot/message/reply';
@@ -304,33 +314,20 @@ function getUser($userid){
     return json_decode($result, true);
     
 }
-
 function leaveGroup($groupId){
     global $access_token;
+    $url = 'https://api.line.me/v2/bot/group/'. urlencode($groupId).'/leave';
+    $headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
 
-    $curl = curl_init();
+    $ch = curl_init($url);
+    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+    $result = curl_exec($ch);
+    curl_close($ch);
 
-curl_setopt_array($curl, array(
-  CURLOPT_URL => "https://api.line.me/v2/bot/group/C57c1cb06e2b7de79955ee091e16050c3/leave",
-  CURLOPT_RETURNTRANSFER => true,
-  CURLOPT_ENCODING => "",
-  CURLOPT_MAXREDIRS => 10,
-  CURLOPT_TIMEOUT => 30,
-  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-  CURLOPT_CUSTOMREQUEST => "POST",
-  CURLOPT_HTTPHEADER => array(
-    "authorization: Bearer w/CaCXolKorjagsQzBTgKYovOd4fiJrS9ez0Qh8rY0S8YVjIOnJBT1P1JmVXI5Bh+XAdN2sk521x7GaYlnAQi3+QUCaDmgzx+rlX5wRubhF1BtwOiiOsB4NyfwJ/FMyKsHoy6sB4E5wa059pme9rKwdB04t89/1O/w1cDnyilFU=",
-    "cache-control: no-cache",
-    "content-type: application/json",
-    "postman-token: 43678754-1a2d-f371-2267-3a8a54345564"
-  ),
-));
-
-$response = curl_exec($curl);
-$err = curl_error($curl);
-    curl_close($curl);
-
-    return json_decode($response, true);
+    return json_decode($result, true);
 
 }
 
