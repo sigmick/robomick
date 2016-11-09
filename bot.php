@@ -237,7 +237,7 @@ $httpCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
                 curl_close($curl);
                 $messages = [
                     'type' => 'text',
-                    'text' => $httpcode 
+                    'text' => $httpCode 
                 ];
                 
             }
