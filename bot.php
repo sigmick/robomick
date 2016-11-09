@@ -18,6 +18,7 @@ if (!is_null($events['events'])) {
 
             $uid=$event['source']['userId'];
             $groupid=$event['source']['groupId'];
+            $roomid=$event['source']['roomId'];
             $user=getUser($uid);
             $displayname=$user['displayName'];
 
@@ -151,7 +152,7 @@ if (!is_null($events['events'])) {
             }
 
             if ((strpos($text, 'show id') !== false)) {
-               $replytext="userid :".$uid ." | "."groupid :".$groupid ; 
+               $replytext="userid :".$uid ." | "."groupid :".$groupid ." | "."roomid :".$roomid ; 
             }
 
             
