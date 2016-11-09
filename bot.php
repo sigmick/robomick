@@ -213,23 +213,31 @@ if (!is_null($events['events'])) {
 
             if ((strpos($text, 'ไสหัวไป robomick') !== false)) {
 
-               $url = 'https://api.line.me/v2/bot/group/C57c1cb06e2b7de79955ee091e16050c3/leave';
-                $headers = array('Content-length: 0','Authorization: Bearer ' . $access_token);
+               $curl = curl_init();
 
-                $ch = curl_init($url);
-                curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-                curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-                $result = curl_exec($ch);
-                $httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-                curl_close($ch);
+curl_setopt_array($curl, array(
+  CURLOPT_URL => "https://api.line.me/v2/bot/group/C57c1cb06e2b7de79955ee091e16050c3/leave",
+  CURLOPT_RETURNTRANSFER => true,
+  CURLOPT_ENCODING => "",
+  CURLOPT_MAXREDIRS => 10,
+  CURLOPT_TIMEOUT => 30,
+  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+  CURLOPT_CUSTOMREQUEST => "POST",
+  CURLOPT_HTTPHEADER => array(
+    "authorization: Bearer w/CaCXolKorjagsQzBTgKYovOd4fiJrS9ez0Qh8rY0S8YVjIOnJBT1P1JmVXI5Bh+XAdN2sk521x7GaYlnAQi3+QUCaDmgzx+rlX5wRubhF1BtwOiiOsB4NyfwJ/FMyKsHoy6sB4E5wa059pme9rKwdB04t89/1O/w1cDnyilFU=",
+    "cache-control: no-cache",
+    "content-type: application/json",
+    "postman-token: 43678754-1a2d-f371-2267-3a8a54345564"
+  ),
+));
 
-                //return json_decode($result, true);
-                $replytext=$url;
+$response = curl_exec($curl);
+$err = curl_error($curl);
+
+curl_close($curl);
                 $messages = [
                     'type' => 'text',
-                    'text' => $httpcode 
+                    'text' => $err 
                 ];
                 
             }
