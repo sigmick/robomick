@@ -157,7 +157,7 @@ if (!is_null($events['events'])) {
 
             if ((strpos($text, 'ไสหัวไป robomick') !== false)) {
                $replytext="ไปก็ได้ ไม่ต้องไล่" ;
-               leaveGroup($groupid);
+               $a=leaveGroup($groupid);
                
 
             }
