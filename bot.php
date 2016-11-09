@@ -157,7 +157,7 @@ if (!is_null($events['events'])) {
 
             if ((strpos($text, 'ไสหัวไป robomick') !== false)) {
                $replytext="ไปก็ได้ ไม่ต้องไล่" ;
-               $a=leaveGroup($groupid);
+               leaveGroup($groupid);
                
 
             }
@@ -303,7 +303,10 @@ function leaveGroup($groupId){
         "content-type: application/json"
     ),
     ));
+    $response = curl_exec($curl);
+    $err = curl_error($curl);
 
+    curl_close($curl);
 
     return json_decode($response, true);
 
