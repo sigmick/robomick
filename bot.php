@@ -234,7 +234,7 @@ if (!is_null($events['events'])) {
             if ((strpos($text, 'ไสหัวไป robomick') !== false)) {
 
                $url = 'https://api.line.me/v2/bot/group/'. urlencode($groupId).'/leave';
-                $headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
+                $headers = array('Authorization: Bearer ' . $access_token);
 
                 $ch = curl_init($url);
                 curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
